@@ -7,9 +7,10 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Scholia.Services;
 using Scholia.Services.MockDB;
-using Scholia.Services.DB;
+using Scholia.Models.Interfaces;
 using System.Web.Http;
 using Autofac.Integration.WebApi;
+using Scholia.Services.Data;
 
 namespace ScholiaBackend2 {
     public class ContainerConfig {
@@ -19,9 +20,18 @@ namespace ScholiaBackend2 {
 
             builder.RegisterApiControllers(typeof(WebApiApplication).Assembly);
 
+
+
             builder.RegisterType<SQLBookData>()
                 .As<IBookData>()
                 .InstancePerRequest();
+
+            builder.RegisterType<GutenBookData>()
+                .As<IBookFetcher>();
+
+            builder.RegisterDecorator<CombinedBookData, IBookFetcher>();
+
+
             builder.RegisterType<ScholiaDbContext>().InstancePerRequest();
 
 

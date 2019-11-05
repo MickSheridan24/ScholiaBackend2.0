@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
+﻿using System.Data.Entity.Infrastructure;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Scholia.Services.Models;
-using ScholiaBackend2.Models;
-using Newtonsoft.Json;
-using Scholia.Services;
-using Scholia.Services.GutenbergService;
+using Scholia.Models;
+using Scholia.Models.Interfaces;
 
-namespace ScholiaBackend2.Controllers
-{
+
+namespace ScholiaBackend2.Controllers {
     public class BooksController : ApiController
     {
         private IBookData db;
-        public  BooksController(IBookData db) {
+        private IBookFetcher service;
+        public  BooksController(IBookData db, IBookFetcher service) {
             this.db = db;
+            this.service = service;
         }
 
 
@@ -28,19 +21,27 @@ namespace ScholiaBackend2.Controllers
         // GET: api/Books
         public IHttpActionResult GetBooks()
         {
-            //var books = db.GetAll();
+            var books = db.GetAll();
 
-            //return Json(books); 
-            var gut = new GutenbergClient();
-            return Json(gut.GutenGet());
+            return Json(books); 
+ 
 
         }
 
         // GET: api/Books/5
         [ResponseType(typeof(Book))]
         public IHttpActionResult GetBook(int id)
-        {
-            Book book = db.Get(id);
+        
+       
+            
+            
+            
+            
+            
+            
+            
+            {
+            Book book = service.Get(id);
             if (book == null)
             {
                 return NotFound();

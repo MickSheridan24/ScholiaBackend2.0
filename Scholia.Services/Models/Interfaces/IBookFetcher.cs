@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Scholia.Services.Models;
+using Scholia.Models;
 
-namespace Scholia.Services {
-    public interface IBookData {
-
-        IEnumerable<Book> GetAll();
+namespace Scholia.Models.Interfaces {
+    public interface IBookFetcher {
 
         Book Get(int id);
-        
     }
 }

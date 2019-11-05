@@ -233,15 +233,17 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DB\SQLBookData.cs" />
+    <Compile Include="Services\Data\CombinedBookData.cs" />
+    <Compile Include="Services\Data\SQLBookData.cs" />
     <Compile Include="Services\GutenbergService\GutenbergClient.cs" />
-    <Compile Include="Services\GutenbergService\GutenBookData.cs" />
-    <Compile Include="Services\Interfaces\IBookData.cs" />
+    <Compile Include="Services\Data\GutenBookData.cs" />
+    <Compile Include="Models\Interfaces\IBookData.cs" />
+    <Compile Include="Models\Interfaces\IBookFetcher.cs" />
     <Compile Include="Services\MockDB\MockBookData.cs" />
     <Compile Include="Services\ScholiaDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\DB\Seeds\" />
+    <Folder Include="Services\Data\Seeds\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

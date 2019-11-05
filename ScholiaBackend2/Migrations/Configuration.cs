@@ -5,15 +5,15 @@ namespace ScholiaBackend2.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ScholiaBackend2.Models.ScholiaDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Scholia.Services.ScholiaDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "ScholiaBackend2.Models.ScholiaDbContext";
+            ContextKey = "Scholia.Services.ScholiaDbContext";
         }
 
-        protected override void Seed(ScholiaBackend2.Models.ScholiaDbContext context)
+        protected override void Seed(Scholia.Services.ScholiaDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

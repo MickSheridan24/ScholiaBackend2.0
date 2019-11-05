@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scholia.Services.Models {
+namespace Scholia.Models {
     public class User {
         public int Id { get; set; }
         public string Username { get; set; }
