@@ -8,6 +8,7 @@ using Scholia.Models;
 namespace Scholia.Models.Interfaces {
     public interface IBookFetcher {
 
-        Book Get(int id);
+        Book Fetch(int id);
+        Dictionary<Object,Object> Search(string param);
     }
 }

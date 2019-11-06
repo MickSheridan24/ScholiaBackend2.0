@@ -1,12 +1,15 @@
 ﻿using System.Data.Entity.Infrastructure;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Scholia.Models;
 using Scholia.Models.Interfaces;
 
 
 namespace ScholiaBackend2.Controllers {
+
+    [EnableCors (origins: "*", headers: "*", methods:"*")]
     public class BooksController : ApiController
     {
         private IBookData db;
@@ -31,25 +34,29 @@ namespace ScholiaBackend2.Controllers {
         // GET: api/Books/5
         [ResponseType(typeof(Book))]
         public IHttpActionResult GetBook(int id)
-        
-       
-            
-            
-            
-            
-            
-            
-            
-            {
-            Book book = service.Get(id);
+        {
+            Book book = service.Fetch(id);
             if (book == null)
             {
                 return NotFound();
             }
-
             return Json(book);
         }
 
+        //GET: api/Books/search
+        [HttpGet]
+        public IHttpActionResult Search(string query){
+
+            var result = service.Search(query);
+
+            return Json(result);
+
+        }
+
+
+
+        // OTHER CONTROLS FOR REFERENCE 
+        /*
         // PUT: api/Books/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutBook(int id, Book book)
@@ -124,10 +131,13 @@ namespace ScholiaBackend2.Controllers {
             }
             base.Dispose(disposing);
         }
+   
+
 
         private bool BookExists(int id)
         {
             return true;//db.Books.Count(e => e.id == id) > 0;
         }
+        */
     }
 }

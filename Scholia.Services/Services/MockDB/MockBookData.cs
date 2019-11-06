@@ -21,6 +21,10 @@ namespace Scholia.Services.MockDB {
 
         }
 
+        public Book Fetch(int GutenID) {
+            return this.Books.FirstOrDefault(b => b.GutenbergId == GutenID);
+        }
+
         public IEnumerable<Book> GetAll() {
             return this.Books; 
         }

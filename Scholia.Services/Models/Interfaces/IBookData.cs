@@ -11,6 +11,7 @@ namespace Scholia.Models.Interfaces {
         IEnumerable<Book> GetAll();
 
         Book Get(int id);
+        Book Fetch(int GutenId);
         
     }
 }

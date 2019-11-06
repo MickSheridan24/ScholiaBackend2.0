@@ -18,19 +18,24 @@ namespace Scholia.Services.Data {
         }
 
 
-        public Book Get(int id) {
+        public Book Fetch(int id) {
 
-            var book = sql.Get(id);
+            var book = sql.Fetch(id);
             if (book != null) {
                 return book;
             }else {
-                book = api.Get(id);
+                book = api.Fetch(id);
                 if (book != null) {
                     return book; 
                 }
             }
             
             return null;
+        }
+
+
+        public Dictionary<Object, Object> Search(string query) {
+           return api.Search(query);
         }
     }
 }

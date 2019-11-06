@@ -19,7 +19,7 @@ namespace Scholia.Services.Data {
         }
 
 
-        public Book Get(int id) {
+        public Book Fetch(int id) {
             var book = client.GutenGet(id);
 
             if (book != null) {
@@ -27,6 +27,11 @@ namespace Scholia.Services.Data {
             }
             return book;
         }
+
+        public Dictionary<Object, Object> Search(string query) {
+            return client.GutenSearch(query);
+        }
+
 
         private void Add(Book b) {
 

@@ -10,11 +10,14 @@ using System.Collections.Generic;
 namespace Scholia.Services.GutenbergService {
     public class GutenbergClient {
 
-        private string endpoint = "http://gutendex.com/books/";
-        private RestClient client; 
+        private string gutenbergEndpoint = "http://gutendex.com/books/";
+        private string gutenAPIEndpoint = "http://gutendex.com/books";
+        private RestClient client;
+        private RestClient apiClient; 
 
         public GutenbergClient() {
-            this.client = new RestClient(endpoint);
+            this.client = new RestClient(gutenbergEndpoint);
+            this.apiClient = new RestClient(gutenAPIEndpoint);
         }
 
         public Book GutenGet(int id) {
@@ -28,8 +31,43 @@ namespace Scholia.Services.GutenbergService {
             return found; 
         }
 
+        public Dictionary<Object, Object> GutenSearch(string query) {
+
+            var request = new RestRequest(gutenAPIEndpoint + "?search=" + query);
+            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+            var response = client.Execute(request).Content;
+
+            return ParseSearch(response);
+        }
+
+        private Dictionary<Object, Object> ParseSearch(string response) {
+            JObject jObject = JObject.Parse(response);
+
+            var resp = new Dictionary<Object, Object>();
+            if (jObject.Value<int>("count") > 0) {
+                var results = jObject["results"];
+
+                var serialized = new List<Dictionary<string, string>>();
+
+                foreach (var result in results) {
+
+                    var package = new Dictionary<string, string>() {
+                    { "id", result.Value<string>("id") },
+                    { "title", result.Value<string>("title") } };
+                    package["author"] = result["authors"].FirstOrDefault().Value<string>("name");
+
+                    serialized.Add(package);
+                }
+                resp["success"] = "true";
+                resp["results"] = serialized;
+            } else {
+                resp["success"] = "false";
+            }
+            return resp;
+        }
+
         private IRestResponse Lookup (int i) {
-            var lookupRequest = new RestRequest(endpoint + i, Method.GET);
+            var lookupRequest = new RestRequest(gutenbergEndpoint + i, Method.GET);
             lookupRequest.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             return client.Execute(lookupRequest);
         }
@@ -53,6 +91,7 @@ namespace Scholia.Services.GutenbergService {
 
         private string GetTextFile(JObject jObject) {
 
+            
             if (jObject.ContainsKey("formats")) {
 
                 var formats = jObject["formats"];

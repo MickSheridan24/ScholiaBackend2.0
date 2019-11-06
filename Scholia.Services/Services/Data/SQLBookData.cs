@@ -7,7 +7,7 @@ using Scholia.Models;
 using Scholia.Models.Interfaces;
 
 namespace Scholia.Services.Data {
-    public class SQLBookData : IBookData, IBookFetcher {
+    public class SQLBookData : IBookData {
 
         private ScholiaDbContext db; 
 
@@ -27,7 +27,7 @@ namespace Scholia.Services.Data {
             return db.Books;
         }
 
-        Book IBookFetcher.Get(int id) {
+        public Book Fetch(int id) {
             return db.Books.FirstOrDefault(b => b.GutenbergId == id);
         }
     }
