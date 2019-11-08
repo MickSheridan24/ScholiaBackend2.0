@@ -20,7 +20,9 @@ namespace ScholiaBackend2 {
 
             builder.RegisterApiControllers(typeof(WebApiApplication).Assembly);
 
-
+            builder.RegisterType<SQLAnnotationData>()
+                .As<IAnnotationData> ()
+                .InstancePerRequest();
 
             builder.RegisterType<SQLBookData>()
                 .As<IBookData>()

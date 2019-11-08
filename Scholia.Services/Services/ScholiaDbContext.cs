@@ -12,6 +12,7 @@ namespace Scholia.Services {
     public class ScholiaDbContext : DbContext {
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Annotation> Annotations { get; set; }
 
     
 

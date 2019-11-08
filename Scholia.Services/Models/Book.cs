@@ -9,20 +9,24 @@ namespace Scholia.Models {
     public class Book {
 
 
-        [Display(Name = "id")]
         public int Id { get; set; }
         [Required]
-        [Display(Name = "title")]
         public string Title { get; set; }
         [Required]
-        [Display(Name = "author")]
         public string Author { get; set; }
         [Required]
-        [Display(Name = "gutenberg_id")]
         public int GutenbergId { get; set; }
         [Required]
-        [Display(Name = "temporary_text")]
         public string Body { get; set; }
 
+        public Dictionary<string, string> JsonReady() {
+            var ret = new Dictionary<string, string>();
+            ret["id"] = this.Id.ToString();
+            ret["title"] = this.Title;
+            ret["author"] = this.Author;
+            ret["gutenberg_id"] = this.GutenbergId.ToString();
+            ret["body"] = this.Body;
+            return ret;
+        }
     }
 }

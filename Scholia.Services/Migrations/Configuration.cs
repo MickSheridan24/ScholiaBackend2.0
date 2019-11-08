@@ -1,4 +1,4 @@
-namespace ScholiaBackend2.Migrations
+namespace Scholia.Services.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -10,7 +10,6 @@ namespace ScholiaBackend2.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Scholia.Services.ScholiaDbContext";
         }
 
         protected override void Seed(Scholia.Services.ScholiaDbContext context)

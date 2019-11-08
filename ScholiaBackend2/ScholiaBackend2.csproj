@@ -345,21 +345,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AnnotationsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910290048070_InitialCreate.cs" />
-    <Compile Include="Migrations\201910290048070_InitialCreate.Designer.cs">
-      <DependentUpon>201910290048070_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911022059430_Initial.cs" />
-    <Compile Include="Migrations\201911022059430_Initial.Designer.cs">
-      <DependentUpon>201911022059430_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -451,14 +443,6 @@
       <Project>{8a57f960-6549-4f47-801f-32fc7c91fbc4}</Project>
       <Name>Scholia.Services</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910290048070_InitialCreate.resx">
-      <DependentUpon>201910290048070_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911022059430_Initial.resx">
-      <DependentUpon>201911022059430_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

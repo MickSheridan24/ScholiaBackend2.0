@@ -5,6 +5,7 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Scholia.Models;
 using Scholia.Models.Interfaces;
+using System.Linq; 
 
 
 namespace ScholiaBackend2.Controllers {
@@ -24,10 +25,9 @@ namespace ScholiaBackend2.Controllers {
         // GET: api/Books
         public IHttpActionResult GetBooks()
         {
-            var books = db.GetAll();
+            var books = db.GetAll().Select(b => b.JsonReady());
 
             return Json(books); 
- 
 
         }
 
@@ -40,7 +40,7 @@ namespace ScholiaBackend2.Controllers {
             {
                 return NotFound();
             }
-            return Json(book);
+            return Json(book.JsonReady());
         }
 
         //GET: api/Books/search
